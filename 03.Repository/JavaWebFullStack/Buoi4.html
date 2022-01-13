@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[BaiTap] Buổi 4</title>
+    <style>
+        section{
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #one{
+            width: 500px;
+            height: auto;
+            background-color: #08A1DA;
+
+            position: absolute;
+        }
+        #Close{
+            position: relative;
+            left:460px;
+            font-weight: bolder;
+            background-color: #08A1DA;
+            color: white;
+            border: none; 
+            font-size: 20px;       
+        }
+        p[name="oneParagraph"]{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: lighter;
+            margin: 20px;
+
+        }
+        #click-me{
+            width: 150px;
+            height: 40px;
+            color: white;
+            background-color: #08A1DA;
+            font-weight: lighter;
+            font-size: 15px;
+            border: 1px solid;
+            border-radius: 3px;
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        #two{
+            width: 500px;
+            position: absolute;
+            top: 250px;
+        }
+        #com{
+            height: 62px;
+            width: 10px;
+            background-color: #B3FA01;
+            float: left;
+        }
+        #button2{
+            width: 200px;
+            height: 60px;
+            background-color: #674AB8;
+            font-size: 15px;
+            color: white;
+            font-weight: bolder;
+            border: none;
+            margin-top: 1px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        #three{
+            position: absolute;
+            top: 350px;
+            width: 250px;
+            height: auto;
+            background-color: #4CAC02;
+        }
+        p[name="threeComment"]{
+            margin: 30px 0px 5px 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        #comment{
+            height: 30px;
+            width: 190px;
+            background-color: white;
+            margin: 0px 30px 30px 30px;
+
+        }
+        div[id*=cicle]{
+            width: 14px;
+            height: 14px;
+            background-color: #0041E7;
+            border-radius: 50%;
+        }
+        table{
+            padding-top: 5px;
+            padding-left: 5px;
+        }
+        #cicle2{
+            background-color: #376EEB;
+        }
+        #cicle3{
+            background-color: #659AE5;
+        }
+        #cicle4{
+            background-color: #A8BBFC;
+        }
+        #for{
+            width: 250px;
+            height: 5px;
+            background-color: #183B63;
+            position: absolute;
+            top: 500px;
+        }
+        #cicle5{
+            width: 20px;
+            height: 20px;
+            background-color: #22BDF0;
+            position: relative;
+            top: -7.5px;
+            left: 50px;
+        }
+        #five{
+            position: absolute;
+            top: 520px;
+            width: 250px;
+            color: black;
+        }
+        #five h4{
+            font-weight: lighter;
+            text-align: center;
+            font-size: 25px;
+            margin: 0px;
+            margin-top: 20px;
+        }
+        ul{
+            list-style: none;
+            padding: 0px;
+        }
+        ul li{
+            width: 250px;
+            height: 50px;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            border: 1px solid #D3D5D5;
+            background-color: #F5F5F5;
+            display: block;
+        }
+        ul li a{
+            display: inline-block;
+            text-decoration: none;
+            padding-top: 16px; 
+            color: black;
+        }
+        .selected{
+            background-color: #E0ECF8;
+        }
+        #six{
+            position: absolute;
+            top: 250px;
+            left: 500px;
+        }
+        .cicle7{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #714193;
+            box-shadow: 5px 5px 5px #6987DF, 30px 40px 60px #49A8C3 inset;
+        }
+        #six h4{
+            font-weight: lighter;
+            font-size: 20px;
+            color: black;
+            text-align: center;
+        }
+        #seven{
+            position: absolute;
+            top: 500px;
+            left: 500px;
+        }
+        #tong{
+            width: 400px;
+            height: 40px;
+            background-color: #B6CCFB;
+            border-radius: 20px;
+            position: absolute;
+        }
+        #process{
+            width: 65%;
+            height: auto;
+            background: #222BC4;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            padding-top: 11px;
+            padding-bottom: 11px;
+        }
+        #eight{
+            position: absolute;
+            top: 600px;
+            left: 500px;
+            
+        }
+        #eight h4{
+            text-align: left;
+            font-weight: lighter;
+            color: black;
+            font-size: 25px;
+            margin: 0px;
+        }
+        #eight input[type="checkbox"]{
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <!--1-->
+        <div id="one">
+            <button id="Close">&#x2715</button>
+            <p name="oneParagraph">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                nonumy eimod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clirta 
+                kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet Lorem 
+                ipsum dor sit amet,
+            </p>
+            <button id="click-me">Click me !</button>
+        </div>
+        <!--2-->
+        <div id="two">
+            <div id="com"></div>
+            <button id="button2">Click me !</button>  
+        </div>
+        <!--3-->
+        <div id="three">
+            <p name="threeComment">Comment</p>
+            <div id="comment">
+                <table>
+                    <tr>
+                        <td><div id="cicle1"></div></td>
+                        <td><div id="cicle2"></div></td>
+                        <td><div id="cicle3"></div></td>
+                        <td><div id="cicle4"></div></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!--4-->
+        <div id="for"> 
+            <div id="line">
+                <div id="cicle5"></div>
+            </div>
+        </div>
+        <!--5-->
+        <div id="five">
+            <h4>List Notification</h4>
+            <ul>
+                <li><a href="./">Noti 1</a></li>
+                <li class="selected"><a href="./">Noti 2</a></li>
+                <li class="selected"><a href="./">Noti 3</a></li>
+                <li><a href="./">Noti 4</a></li>
+            </ul>
+        </div>
+        <!--6-->
+        <div id="six">
+            <div class="cicle7 "></div>
+            <h4>Hello Guys</h4>
+        </div>
+        <!--7-->
+        <div id="seven">
+            <div id="tong">
+                <div id="process">65%</div>
+            </div>
+        </div>
+        <!--8-->
+        <div id="eight">
+            <h4>Checkbox</h4>
+            <input type="checkbox" checked>
+        </div>
+    </section>
+</body>
+</html>

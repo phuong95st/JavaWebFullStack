@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <style>
+        .flex-container{
+            height: 800px;;
+            background-color: grey;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+        }
+        div[class*=flex-item]{
+            width: 100px;
+            height: 100px;
+            flex-grow: 1;
+        }
+        .flex-item1{
+            background-color: hotpink;
+            flex-basis: 200px;
+        }
+        .flex-item2{
+            background-color: khaki;
+            flex-shrink: 3;
+            order:1
+        }
+        .flex-item3{
+            background-color: lawngreen;
+        }
+        .flex-item4{
+            background-color: lightsalmon;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        - Gồm 2 thành phần: flex container và flex item
+        - main axis: chiều rộng của flex container, chạy từ trái qua phải
+        - cross axis: Chiều cao của flex container, chạy từ trên xuống dưới
+        - main start: Điểm bắt đầu của main axis
+        - main end: Điểm kết thúc của main axis
+        - main size: chiều rộng của flex item
+        - cross size: chiều cao của flex item
+
+        Thuộc tính của flex container 
+            display: định nghĩa 1 flex container, là bắt buộc khi làm việc với flexbox
+            flex-direction: định  hướng hiển thị của các flex item (theo row hay theo column)
+            flex-wrap: bọc các item nằm gọn trong 1 container khi co chiều rộng.
+            flex-flow: viết rút gọn của flex-direction và flex-wrap. Giá trị đầu tiên là flex-direction
+            justify-content: chỉnh vị trí của các item so với main axis (chiều rộng của container)
+                flex-start: item bắt đầu từ main start
+                flex-end:  item bắt đầu từ main end
+                space-between: Chia đều khoảng cách thừa và thêm vào giữa các item
+                space-around: khoảng cách ở đầu và cuối bằng 1 nửa khoảng cách giữa 2 item liên nhau.
+                space-evenly: khoảng các ở đầu và cuối và giữa các item bằng nhau.
+            align-items: căn chỉnh chiều cao của item dọc theo cross axis. (chiều cao của container)
+                baseline: text trong các item sẽ thẳng hàng ngang với nhau
+                stretch: fix = chiều cao của container
+                flex-end: căn các item theo main end.
+            align-content: Căn chỉnh nội dung của item theo trục cross axis. Tương tự justify-content
+        Thuộc tính của flex item:
+            order: sắp xếp lại thứ tự xuất hiện của các item
+            flex-grow: Giãn cách các item theo độ rộng của container. căn chỉnh độ rộng của các item theo 1 tỉ lệ.
+            flex-shrink: ngược lại với flex-grow
+            flex-basis: tùy chỉnh độ dài ban đầu của item
+            flex: gộp chung: flex-grow, flex-shrink, flex-basis 
+            align-self: tương tự align-item của container, tuy  nhiên áp dụng từng item.
+
+    -->
+    <div class="flex-container">
+        <div class="flex-item1">1</div>
+        <div class="flex-item2">2</div>
+        <div class="flex-item3">3</div>
+        <div class="flex-item2">5</div>
+        <div class="flex-item4">4</div>
+        
+    </div>
+</body>
+</html>

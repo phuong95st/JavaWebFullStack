@@ -1,0 +1,60 @@
+- Behance.net => front end
+
+--Addin VSCode
+Bracket pair: pair cặp dấu () hoặc {}
+Live server: không cần refresh page html để apply thay đổi mà server tự update
+Prettier code: phân màu các mã code cho dễn nhìn
+VScode-icons: đánh icon cho các file để dễ nhìn.
+
+--- Buổi 3
+CSS selector
+1. simple selector:
+    - id
+    - class
+    - element
+    - group element
+2. Combinator selector
+    - Kết hợp giữa element và id hoặc class: ví du: p.classname
+    - chọn các element trong 1 element cha: ví dụ: div page
+    - Chọn các element là con cấp 1 của element cha: ví du: div > p (get các thẻ p là con cấp 1 của div)
+3. Pseudo class selector
+4. Pseudo element selector
+5. Attribute selector
+    - Ví dụ [name="hello"], 
+    - ví dụ: .classname1.ClassName2: get các thẻ html mà có 2 classname
+    - Ví du: [class*="hello"]: Get các thẻ html có thuộc tính class bắt đầu bằng chữ hello
+
+Độ ưu tiên CSS:
+- CSS selector (ID > attribute/class > element)
+- Theo thứ tự;
+- Theo cách sử dụng; Inline > internal > extenal
+
+--- Buổi 4
+animation:
+ - transform - trasision
+ - @keyframes ten
+    from{
+
+    }
+    to{
+
+    }
+    0%{
+
+    }
+    50%{
+
+    }
+    100%{
+
+    }
+
+-- Buổi 5
+Có 5 kỹ thuật chia layout
+1. Table: Kỹ thuật cũ.
+2. Column: Thường dùng cho các trạng có nhiều chữ.
+3. Float*: Cột không cao đều nhau
+4. Grid: Không hỗ trợ trình duyệt IE
+5. Flex (Flexbox)*: Hỗ trợ IE, chỉ có 1 số thuộc tính không hỗ trợ IE.
+
+comment: Ctrl + K + C

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section{
+            width: 60%;
+            background-color: #F6F5F7;
+            margin-left: 20%;
+            margin-top: 2%;
+            height: 500px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #left-layout{
+            width: 50%;
+            float: left;
+        }
+        #image{
+            width: 50%;
+            float: left;
+            background-color: green;
+            height: 500px;
+        }
+        ul{
+            padding-top: 4%;
+            list-style: none;
+            padding-left: 20px;
+        }
+        ul li{
+            display: inline;
+            margin: 5px;
+        }
+        ul li a{
+            color: white;
+            background-color: #676668;
+            border-radius: 20px;
+            text-decoration: none;
+            padding: 10px 15px 10px 15px;
+            font-weight: bold;
+
+        }
+        .title{
+            text-transform: uppercase;
+            font-size: 70px;
+            font-weight: 800;
+            height: 10px;
+            padding-left: 40px;
+            
+        }
+        .title[name="first"]{
+            margin-top: 160px;
+        }
+        #last{
+            padding-left: 40px;
+            font-size: 14px;
+            text-transform: uppercase;
+            padding-top: 20px;
+        }
+        #cicle{
+            width: 120px;
+            height: 120px;
+            background-color: #FE0000;
+            border-radius: 50%;
+            position: fixed;
+            left: 46%;
+            top: 220px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <section>
+        <!--layout trái-->
+        <div id="left-layout">
+            <ul>
+                <li><a href="./">Like This</a></li>
+                <li><a href="./">Save</a></li>
+                <li><a href="./">Permalink</a></li>
+            </ul>
+            <p class="title" name="first">WELCOME</p>
+            <p class="title">TO TOKYO</p>
+            <p id="last">DISCOVER A NEW WORLD</p>
+        </div>
+        <!--Layout phải-->
+        <div id="image">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" alt="">
+        </div>
+        <!--Hình tròn-->
+        <div id="cicle"></div>
+    </section>
+</body>
+</html>
