@@ -1,0 +1,12 @@
+1. IP SE: 375 x 667
+2. IP XR: 414 x 896
+3. GG Pixel 5: 393 x 851
+4. IP 12 Pro: 390 x 844 => Không có nền xanh
+5. Ipad Air: 820 x 1180 => Có nền xanh, không có sign up
+6. Ipad mini: 768 x 1024
+7. Suface pro: 912 x 1368
+8. 13 inch: 1200 x 800 => Có nền xanh + sign up
+
+min with: 1000 => Có nền xanh + sign up
+min with: 618 => Có nền xanh, không có sign up
+max with: 618 => Không có nền xanh
