@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Buôi 6] bài tập 2</title>
+    <style>
+        
+        body{
+            margin: 10px;
+            background-color: #eef1f6;
+        }
+        :root {
+            --font-size-item-title: 20px;
+            --font-size-item-des:12px;
+            --color: gray;
+        }
+        #title p:nth-child(1){
+            font-size: var(--font-size-item-title);
+        }
+        #title p:nth-child(2){
+            font-size: 17px;
+        }
+        #title p:nth-child(2) span{
+            color: var(--color);
+        }
+        #container{
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        .item{
+            width: 250px;
+            background-color: #ffffff;
+            margin: 10px;
+            flex-grow: 1;
+        }
+        .item:hover{
+            border: solid 2px #c8ddc9;
+            border-radius: 3px;
+        }
+        .img img{
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+        .text{
+            padding: 0 30px 30px 30px;
+        }
+        .text p:nth-child(1){
+            font-size: var(--font-size-item-title);
+        }
+        .text p:nth-child(2){
+            font-size: var(--font-size-item-des);
+            color: var(--color);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Row 1: title-->
+    <div id="title">
+        <p>Manage your App</p>
+        <p>Nike-Store <span>Dashboad</span></p>
+    </div>
+
+    <!-- Row 2: Flex box-->
+    <div id="container">
+        <div class="item">
+            <!-- Item row 1: image-->
+            <div class="img">
+                <img src="./Image/add.JPG">
+            </div>
+            <!--Item row 2: text-->
+            <div class="text">
+                <p>New Schema</p>
+                <p>It dotnes the structure of your content element</p>
+            </div>
+        </div>
+        <div class="item">
+            <!-- Item row 1: image-->
+            <div class="img">
+                <img src="./Image/2.JPG">
+            </div>
+            <!--Item row 2: text-->
+            <div class="text">
+                <p>API Documentation</p>
+                <p>ISwagger competibio does for app management</p>
+            </div>
+        </div>
+        <div class="item">
+            <!-- Item row 1: image-->
+            <div class="img">
+                <img src="./Image/3.JPG">
+            </div>
+            <!--Item row 2: text-->
+            <div class="text">
+                <p>Feeed back</p>
+                <p>Provido feeedback or request new features to help us keep improving</p>
+            </div>
+        </div>
+        <div class="item">
+            <!-- Item row 1: image-->
+            <div class="img">
+                <img src="./Image/4.JPG">
+            </div>
+            <!--Item row 2: text-->
+            <div class="text">
+                <p>Github</p>
+                <p>Get sourrce code report bugs and get support</p>
+            </div>
+        </div>
+        <div class="item">
+            <!-- Item row 1: title-->
+            <div>
+                <p>API Calls</p>
+            </div>
+            <!--Item row 2: content-->
+            <div>
+                <!--Item row 2: column 1-->
+                <div></div>
+                <!--Item row 2: column 2-->
+                <div>
+                    <div>
+                        <p>12568</p>
+                        <p>API Calls</p>
+                    </div>
+                    <div>
+                        <p>Monthly limit 50K</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <!-- Item row 1: title-->
+            <div>
+                <p>API Calls</p>
+            </div>
+            <!--Item row 2: content-->
+            <div>
+                <!--Item row 2: column 1-->
+                <div></div>
+                <!--Item row 2: column 2-->
+                <div>
+                    <div>
+                        <p>236 MB</p>
+                        <p>Uploaded</p>
+                    </div>
+                    <div>
+                        <p>Total limit 500MB</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
