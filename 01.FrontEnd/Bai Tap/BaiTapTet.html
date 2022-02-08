@@ -23,6 +23,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
+            height: 100vh;
         }
         .content-sign-in{
             width: 70%;
@@ -30,18 +31,19 @@
             display: flex;
             align-items: center;
             flex-direction: column;
+            justify-content: center;
         }
         .Content-Sign-up{
             width: 30%;
             background-image: url("https://hinhanhdephd.com/wp-content/uploads/2019/12/hinh-anh-chuc-tet-chuc-mung-nam-moi-2022-8.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-size: contain;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
         .title{
             font-size: 35px;
@@ -59,6 +61,10 @@
             border-bottom: 1px solid #A2A39F;
             width: 100%;
             margin-bottom: 40px;
+        }
+        input:focus{
+            outline: none;
+            
         }
         button{
             width: 100%;
@@ -88,7 +94,7 @@
             text-align: center;
             flex-basis: 30%;
         }
-        .content-sign-up-content{
+        .content-sign-up-button{
             display: flex;
             align-items: center;
             flex-basis: 70%;
@@ -227,21 +233,22 @@
             
         <!-- Content-Sign-up -->
         <div class="Content-Sign-up">
-            <!-- content-sign-up-header-->
-            <div class="content-sign-up-header">
-                <!-- sign-up-header-title-->
-                <div class="sign-up-header-title">
-                    <p class="title">New here?</p>
+                <!-- content-sign-up-header-->
+                <div class="content-sign-up-header">
+                    <!-- sign-up-header-title-->
+                    <div class="sign-up-header-title">
+                        <p class="title">New here?</p>
+                    </div>
+                    <!-- sign-up-header-desc-->
+                    <div class="sign-up-header-desc">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing edit Culpa beatae quae.</p>
+                    </div>
                 </div>
-                <!-- sign-up-header-desc-->
-                <div class="sign-up-header-desc">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing edit Culpa beatae quae.</p>
+                <!-- content-sign-up-content-->
+                <div class="content-sign-up-button">
+                    <button class="btn-sign-up">Sign Up</button>
                 </div>
-            </div>
-            <!-- content-sign-up-content-->
-            <div class="content-sign-up-content">
-                <button class="btn-sign-up">Sign Up</button>
-            </div>
+            
         </div>
     </div>
 </body>
