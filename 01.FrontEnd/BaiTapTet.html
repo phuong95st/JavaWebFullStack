@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Bài tập] Responsive </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body{
+            background-image: linear-gradient(to right bottom, #677de9, #6f70d8, #7464c6, #7658b4, #764ca3);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            margin: 2%;
+            background-repeat: no-repeat;
+        }
+        .content{
+            width: 94%;
+            border: 1px solid #A2A39F ;
+            box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.63);
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        .content-sign-in{
+            width: 70%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .Content-Sign-up{
+            width: 30%;
+            background-image: url("https://hinhanhdephd.com/wp-content/uploads/2019/12/hinh-anh-chuc-tet-chuc-mung-nam-moi-2022-8.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title{
+            font-size: 35px;
+
+        }
+        .input{
+            color: #A2A39F;
+            margin: 0;
+        }
+        .content-sign-in-content{
+            width: 35%;
+        }
+        input{
+            border: 0;
+            border-bottom: 1px solid #A2A39F;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        input:focus{
+            outline: none;
+            
+        }
+        button{
+            width: 100%;
+            padding: 5px 0;
+            background-image: linear-gradient(to right, #677de9, #6f70d8, #7464c6, #7658b4, #764ca3);
+            border: 0px;
+            border-radius: 50px;
+            color: white;
+            font-weight:bold;
+            cursor: pointer;
+        }
+        .forgot-password{
+            margin: 40px 0;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        .content-sign-in-login-with{
+            width: 50%;
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 30px;
+        }
+        .content-sign-up-header{
+            width: 90%;
+            text-align: center;
+            flex-basis: 30%;
+        }
+        .content-sign-up-button{
+            display: flex;
+            align-items: center;
+            flex-basis: 70%;
+        }
+        .btn-sign-up{
+            border: 1px solid white;
+            width: 100px;
+            background-image: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .form-login-btn-sign-up{
+            margin-top: 10px;
+        }
+        .form-login-btn-sign-up > button{
+            background-image: none;
+            background-color: #EFEFEF;
+            border: 1px solid #A2A39F;
+            border-radius: 50px;
+            padding: 5px 0;
+            font-weight: bold;
+            cursor: pointer;
+            color: black;
+        }
+
+         /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            body{
+                background-image: none;
+                font-size: smaller;
+                background-repeat: no-repeat;
+            }
+            .content{
+                width: 100%;
+                border: none;
+                box-shadow: none;
+                background-color: white;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+            }
+            .title{
+                font-size: 25px;
+            }
+            .Content-Sign-up{
+                display: none;
+            }
+            .content-sign-in{
+                width: 100%;
+            }
+            .content-sign-in-content{
+                width: 50%;
+            }
+            .content-sign-in-login-with{
+                width: 70%;
+                display: flex;
+                justify-content: space-evenly;
+                margin-bottom: 30px;
+            }
+            .form-login-btn-sign-up{
+                display: block;
+            }
+
+        }
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (max-width: 992px) {
+            .Content-Sign-up{
+                display: none;
+            }
+            .content-sign-in{
+                width: 100%;
+            }
+            .content-sign-in-content{
+                width: 50%;
+            }
+            .content-sign-in-login-with{
+                width: 70%;
+                display: flex;
+                justify-content: space-evenly;
+                margin-bottom: 30px;
+            }
+            .form-login-btn-sign-up{
+                display: block;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Content-->
+    <div class="content">
+        <!-- Content-Sign-In -->
+        <div class="content-sign-in">
+            <div class="content-sign-in-content">
+                <!-- content-sign-in-title-->
+                <div class="content-sign-in-title">
+                    <p class="title">Sign in</p>
+                </div>
+                <!-- Content-sign-in-form-login-->
+                <div class="content-sign-in-form-login">
+                    <form action="#" method="post">
+                        <!-- form-login-username-->
+                        <div class="form-login-username">
+                            <p class="input">Username</p>
+                            <input type="text">
+                        </div>
+                        <!-- form-login-password-->
+                        <div class="form-login-password">
+                            <p class="input">Password</p>
+                            <input type="password">
+                        </div>
+                        <!-- form-login-btn-sign-in-->
+                        <div class="form-login-btn-sign-in">
+                            <button>Sign in</button>
+                        </div>
+                        <!-- form-login-btn-sign-up-->
+                        <div class="form-login-btn-sign-up" hidden>
+                            <button >Sign up</button>
+                        </div>
+                    </form>
+                    <!-- Form-login-forgot-pass-->
+                    <div class="forgot-password">
+                        <a href="#" >Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Content-sign-in-login-with-->
+            <div class="content-sign-in-login-with">
+                <div><a href="#"><i class="fa fa-facebook-square" style="font-size:48px;color:#3A5592"></i></a></div>
+                <div><a href="#"><i class="fa fa-twitter-square" style="font-size:48px;color:#1B96E5"></i></a></div>
+                <div><a href="#"><i class="fa fa-linkedin-square" style="font-size:48px;color:#0070AA"></i></a></div>
+                <div><a href="#"><i class="fa fa-instagram" style="font-size:48px;color:#BA4C16"></i></a></div>
+            </div>
+        </div>
+            
+        <!-- Content-Sign-up -->
+        <div class="Content-Sign-up">
+                <!-- content-sign-up-header-->
+                <div class="content-sign-up-header">
+                    <!-- sign-up-header-title-->
+                    <div class="sign-up-header-title">
+                        <p class="title">New here?</p>
+                    </div>
+                    <!-- sign-up-header-desc-->
+                    <div class="sign-up-header-desc">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing edit Culpa beatae quae.</p>
+                    </div>
+                </div>
+                <!-- content-sign-up-content-->
+                <div class="content-sign-up-button">
+                    <button class="btn-sign-up">Sign Up</button>
+                </div>
+            
+        </div>
+    </div>
+</body>
+</html>
