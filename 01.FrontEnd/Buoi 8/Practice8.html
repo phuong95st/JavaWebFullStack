@@ -34,13 +34,9 @@
             var a = document.getElementById('a').value;
             var b = document.getElementById('b').value;
 
-            //console.log(a);
-            //console.log(b);
             if(isErrorInput(a,b,action)){
-                //console.log(true);
                 return;
             }
-            //console.log(1);
             document.getElementById('error').innerText = a + action + ' '  + b ;
             document.getElementById('error').style.display = 'block';
         }
@@ -48,6 +44,7 @@
         function reset(){
             document.getElementById('a').value = '';
             document.getElementById('b').value = '';
+            console.log(a +' '+ b);
             document.getElementById('error').style.display = 'none';
         }
     </script>
@@ -59,11 +56,11 @@
             <input id="a" type="number"><br>
             <label>B = </label>
             <input type="number" id="b"><br><br>
-            <p id="error">xxx</p><br>
-            <button onclick="calculate('+')">+</button>
-            <button onclick="calculate('-')">-</button>
-            <button onclick="calculate('*')">*</button>
-            <button onclick="calculate('/')">/</button>
+            <p id="error" hidden></p><br>
+            <button onclick="calculate('+')" type="button">+</button>
+            <button onclick="calculate('-')" type="button">-</button>
+            <button onclick="calculate('*')" type="button">*</button>
+            <button onclick="calculate('/')" type="button">/</button>
             <button onclick="reset()">Reset</button>
         </form>
     </div>
