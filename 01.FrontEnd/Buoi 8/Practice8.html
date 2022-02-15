@@ -37,7 +37,7 @@
             if(isErrorInput(a,b,action)){
                 return;
             }
-            document.getElementById('error').innerText = a + action + ' '  + b ;
+            document.getElementById('error').innerText = eval(a + action + ' '  + b) ;
             document.getElementById('error').style.display = 'block';
         }
 
