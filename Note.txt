@@ -58,3 +58,31 @@ Có 5 kỹ thuật chia layout
 5. Flex (Flexbox)*: Hỗ trợ IE, chỉ có 1 số thuộc tính không hỗ trợ IE.
 
 comment: Ctrl + K + C
+
+--------------------------
+Buổi 8:
+- JS là ngôn ngữ lập trình phổ biến nhất thế giới
+- JS dễ học do cần tuân thủ nhiều quy tắc như các ngôn ngữ lập trình khác
+- JS dùng để lập trình cho các hoạt động của web. ngoài ra có thể được dùng làm backend
+
+
+- JS có thể thay đổi:
+    1. Nội dung của 1 thẻ html: ví dụ: document.getElementById("demo").innerHTML = ...
+    2. giá trị thuộc tính của 1 thẻ html. Ví dụ: document.getElementById("demo").src = ...
+    3. Thay đổi giá trị thuộc tính của css. Ví dụ: document.getElementById("demo").style.font-size = ...
+
+- JS có 2 cách để triển khai trong 1 tài liệu html
+    1. Viết JS trong 1 cặp thẻ <script></script>
+    2. Viết trong 1 file .js và import vào tài liệu html thông qua thẻ <script src="xxx.js"></script>
+
+- syntax
+    1. Khai báo biến
+        - var:
+        - left
+        - const
+    2. Khai báo hàm
+    3. Kiểu dữ liệu
+    4. DOM trong JS
+    5. Vòng lặp, hàm trong JS hỗ trợ
+    6. JSON
+    7. Ajax

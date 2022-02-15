@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function isErrorInput(a,b,action){
+            var error = false;
+            if(a == '' && b == ''){
+                document.getElementById('error').innerText = 'Please input a and b.';
+                error = true;
+            }else if (a == ''){
+                document.getElementById('error').innerText = 'Please input a.';
+                error = true;
+            }else if(b == ''){
+                document.getElementById('error').innerText = 'Please input b.';
+                error = true;
+            }else if (action === '/' && b == 0){
+                document.getElementById('error').innerText = 'Please input b diferrent 0';
+                error = true;
+            }
+
+            if(error){
+                document.getElementById('error').style.color='red';
+                document.getElementById('error').style.display='block';
+                return true;
+            }
+            return false;
+        }
+
+        function calculate(action){
+            var a = document.getElementById('a').value;
+            var b = document.getElementById('b').value;
+
+            //console.log(a);
+            //console.log(b);
+            if(isErrorInput(a,b,action)){
+                //console.log(true);
+                return;
+            }
+            //console.log(1);
+            document.getElementById('error').innerText = a + action + ' '  + b ;
+            document.getElementById('error').style.display = 'block';
+        }
+
+        function reset(){
+            document.getElementById('a').value = '';
+            document.getElementById('b').value = '';
+            document.getElementById('error').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <form>
+            <label>A = </label>
+            <input id="a" type="number"><br>
+            <label>B = </label>
+            <input type="number" id="b"><br><br>
+            <p id="error">xxx</p><br>
+            <button onclick="calculate('+')">+</button>
+            <button onclick="calculate('-')">-</button>
+            <button onclick="calculate('*')">*</button>
+            <button onclick="calculate('/')">/</button>
+            <button onclick="reset()">Reset</button>
+        </form>
+    </div>
+</body>
+</html>
