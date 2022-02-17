@@ -84,5 +84,60 @@ Buổi 8:
     3. Kiểu dữ liệu
     4. DOM trong JS
     5. Vòng lặp, hàm trong JS hỗ trợ
-    6. JSON
+    6. JSON: 
+        javascript object notation. Cấu trúc chuỗi text theo dạng đối tượng trong JS. Trao đổi dữ liệu qua lại giữa các nền tảng
+        - Convert từ Object => JSON: JSON.stringigy(object)
+        - convert từ JSON -> Object: JSON.parse(json)
     7. Ajax
+    8. Array:
+        - mảng là 1 Object
+        - Hàm cơ bản;
+            sort(): sắp xếp
+            push(6): Thêm phần tử vào cuối mảng
+            pop(): Xóa phần tử ở cuối mảng
+            shift(): xóa phần tử đầu mảng
+            splice(vị trí phần tử đầu tiên,n): xóa n phần tử bắt đầu ở vị trí đầu tiên 
+            concat([mảng]): nối mảng
+    9. String
+        - concat(str): công chuỗi
+        - lengh: số lượng kí tự của String
+        - chartAt(index): lấy kí tự ở vị trí index trong chuỗi
+        - indexOf(strFind): Tìm kiếm chuối strFind từ đầu xuống cuối
+        - lastIndexOf(str): Tìm kiếm chuỗi str từ cuối lên đầu
+        - subStr(startIndex, n): cắt n kí tự từ vị trí startIndex
+        - subString(startIndex, endIndex): cắt chuỗi từ vị trí start đến vị trí end 
+        - split(str): chia chuỗi thành array theo str.
+        - replace(str1, str2): thay thế chuỗi str1 thành chuỗi str2. Chuỗi gốc không bị thay đổi.
+    10. Object
+        - Khởi tạo bằng từ khóa new
+        - khởi tạo và gán giá trị:
+            var personA = {
+                name: "Phuong",
+                age: 20,
+                eat: function (){
+                    return this.name + " eat"
+                }
+            }
+        - Thêm thuộc tính cho đối tượng:
+            personA.address = "Ha Noi"
+        - Thêm hành vi cho đối tượng:
+            person.sleep = function(){
+                return this.name + " sleep"
+            }
+        - ES 5 hỗ trợ hàm set get:
+            set setName(name){
+                this.name = name;
+            }
+
+            get getName(){
+                return this.name;
+            }
+
+            person.setName = "PhuongNH";
+            var name = person.getName;
+
+-------------------------------------
+
+ - set sự kiện trong js: addEvenListener
+ - Mảng a = [...b]: a copy các phần tử của b. b không bị ảnh hưởng
+        a = b => mảng a hoặc b thay đổi => mảng còn lại cũng bị thay đổi

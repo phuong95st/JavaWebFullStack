@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // use strick mode
+        "use strick"
+        // khai bao mang hoc sinh
+        var students = [];
+        // xử lý sự kiện lick click btn nhập
+        function nhap() {
+            var student = document.getElementById('student').value;
+            students.push(student);
+            // set lại message
+            document.getElementById("message").innerText = "Bạn đang có " + students.length + " học sinh.";
+        }
+        // xử lý sự kiện click btn in
+        function print() {
+            // xử lý hiển thị list student
+            var listStudent = "";
+            for (let i = 0; i < students.length; i++) {
+                listStudent += "<li>" + students[i] + "</li>";
+            }
+            // set list-student
+            document.getElementById("list-student").innerHTML = listStudent;
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <div>
+            <input type="text" id="student">
+            <button onclick="nhap()">Nhập</button>
+            <button onclick="print()">In</button>
+        </div>
+        <div>
+            <p id="message"></p>
+            <ol id="list-student">
+            </ol>
+        </div>
+
+    </div>
+</body>
+
+</html>
