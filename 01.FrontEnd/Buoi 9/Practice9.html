@@ -8,7 +8,7 @@
     <title>Document</title>
     <script>
         // use strick mode
-        "use strick"
+        //"use strick"
         // khai bao mang hoc sinh
         var students = [];
         // xử lý sự kiện lick click btn nhập
@@ -16,7 +16,7 @@
             var student = document.getElementById('student').value;
             students.push(student);
             // set lại message
-            document.getElementById("message").innerText = "Bạn đang có " + students.length + " học sinh.";
+            document.getElementById("message").innerText = `"Bạn đang có ${students.length} học sinh`;
         }
         // xử lý sự kiện click btn in
         function print() {
