@@ -207,9 +207,9 @@
         function existStudent(classInput, studentName, yearOfBirth) {
             for (let i = 0; i < listClassInfo.length; i++) {
                 if (listClassInfo[i].class == `${classInput}`) {
-                    for (let j = 0; j < listClassInfo[i].students.lenght; j++) {
-                        if (listClassInfo[i].student[j].name == studentName && listClassInfo[i].student[j].yearOfBirth == yearOfBirth) {
-                            document.getElementById("exist-student").innerText = `sinh viên "${studentName}", sinh năm ${yearOfBirth} đã tồn tại trong lớp ${classInput}.`;
+                    for (let j = 0; j < listClassInfo[i].students.length; j++) {
+                        if (listClassInfo[i].students[j].name == studentName && listClassInfo[i].students[j].yearOfBirth == yearOfBirth) {
+                            document.getElementById("exist-student").innerText = `Sinh viên "${studentName}", sinh năm ${yearOfBirth} đã tồn tại trong lớp ${classInput}.`;
                             document.getElementById("exist-student").style.display = "block";
                             return true;
                         }
@@ -290,7 +290,7 @@
             if (errorInput(classSelected, "class-seleted") | errorInput(studentNameInput, "student-name-massage")) {
                 return;
             }
-            //debugger;
+            debugger;
             // check exists student
             if (existStudent(classSelected, studentNameInput, yearOfBirth)) {
                 return;
@@ -321,7 +321,7 @@
             // tìm class và check số lượng hoc sinh
             for (let i = 0; i < listClassInfo.length; i++) {
                 if (listClassInfo[i].class == classSelected) {
-                    document.getElementById("info-sinh-vien").innerText = `Đang có ${listClassInfo[i].students.length} học sinh`;
+                    document.getElementById("info-sinh-vien").innerText = `Đang có ${listClassInfo[i].students.length} sinh viên`;
                     document.getElementById("info-sinh-vien").style.display = 'block';
                     document.getElementById("sum-student").innerText = `Tổng số sinh viên hiện tại: ${listClassInfo[i].students.length} sinh viên`;
                     // Hiển thị list sinh viên
