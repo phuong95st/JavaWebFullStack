@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Bài Tập 8] Javascript</title>
+    <style>
+        .content {
+            width: 70%;
+            margin: auto;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            text-transform: uppercase;
+        }
+
+        .require {
+            color: red;
+            margin: 0;
+            margin-top: 10px;
+        }
+
+        .lable {
+            font-weight: bold;
+            font-size: 20px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            color: #6F93BC;
+            margin: 0;
+            margin-top: 10px;
+        }
+
+        table,
+        th,
+        td {
+            border: solid 1px black;
+            padding: 5px;
+        }
+
+        table {
+            margin-top: 10px;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        select,
+        button {
+            border: solid 1px black;
+            background-color: white;
+            padding: 5px;
+        }
+
+        input,
+        .class-list {
+            padding: 5px;
+            border: solid 1px black;
+            outline: none;
+            width: 80%;
+        }
+
+        .left {
+            margin-left: 50px;
+        }
+
+        button {
+            background-color: #0355F9;
+            color: white;
+            width: 70px;
+            cursor: pointer;
+        }
+
+        .flex-item {
+            flex-basis: 25%;
+        }
+
+        .button {
+            align-self: flex-end;
+        }
+
+        .btn-add-student {
+            align-self: flex-end;
+        }
+
+        .nam-sinh {
+            flex-basis: 10%;
+        }
+
+        .flex div:nth-child(4) {
+            flex-basis: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Content-->
+    <div class="content">
+        <!--Thông tin lớp học-->
+        <div class="class-info">
+            <h2 class="title">Thông tin lớp học</h2>
+            <div class="flex left">
+                <div class="flex-item">
+                    <p class="lable">Lớp <span class="require">*</span></p>
+                    <input type="text" id="class-input">
+                    <p class="require" id="class-massage" hidden>Bạn cần phải nhập thông tin này</p>
+                </div>
+                <div class="flex-item">
+                    <p class="lable">Giáo viên chủ nhiệm <span class="require">*</span></p>
+                    <input type="text" id="teacher-input">
+                    <p class="require" id="teacher-massage" hidden>Bạn cần phải nhập thông tin này</p>
+                </div>
+                <div class="flex-item button nam-sinh" id="button">
+                    <button onclick="addClass();">Thêm</button>
+                </div>
+                <div class="flex-item"></div>
+            </div>
+        </div>
+        <br><br>
+        <hr>
+        <!--Thông tin sinh viên-->
+        <div class="student-info">
+            <h2 class="title">Thông tin sinh viên</h2>
+            <div class="flex left">
+                <div class="flex-item">
+                    <p class="lable">Danh sách lớp</p>
+                    <select class="class-list" id="class-list" onchange="selectedClass()">
+                        <option></option>
+                    </select>
+                    <p class="require" id="class-seleted" hidden>Bạn cần phải nhập thông tin này</p>
+                    <p class="info" id="info-sinh-vien" hidden>Đang có 0 học sinh</p>
+                </div>
+                <div class="flex-item">
+                    <p class="lable">Họ tên sinh viên <span class="require">*</span></p>
+                    <input type="text" id="student-name-input">
+                    <p class="require" id="student-name-massage" hidden>Bạn cần phải nhập thông tin này</p>
+                </div>
+                <div class="flex-item nam-sinh">
+                    <p class="lable">Năm sinh</p>
+                    <select id="Year-of-birth">
+
+                    </select>
+                </div>
+                <div class="flex-item btn-add-student">
+                    <button onclick="addStudent()">Thêm</button>
+                </div>
+                <p class="require" id="exist-student" hidden></p>
+            </div>
+        </div>
+        <br><br>
+        <hr>
+        <!--Danh sách sinh viên-->
+        <div class="list-student">
+            <h2 class="title">Danh sách học sinh</h2>
+            <div class="left" id="danh-sach-sv" hidden>
+                <p class="info" id="sum-student">Tổng số học sinh hiện tại: 0 học sinh</p>
+                <table id="data">
+                    <tr>
+                        <th>STT</th>
+                        <th>Họ tên</th>
+                        <th>Năm sinh</th>
+                        <th>Giáo viên chủ nhiệm</th>
+                    </tr>
+                    <tr >
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--javascript-->
+    <script>
+        // use strict
+        "use strict"
+        // fill data year of birth
+        //debugger;
+        var currentYear = new Date().getFullYear();
+        document.getElementById("Year-of-birth").innerHTML = "";
+        for (let i = 1900; i <= currentYear; i++) {
+            document.getElementById("Year-of-birth").innerHTML += `<option value="${i}">${i}</option>`;
+        }
+
+        // common
+        var listClassInfo = []; // mảng các đối tượng lớp học. Mỗi đối tượng lớp học có 2 thông tin lớp và gvcn
+        const error1 = "Bạn cần phải nhập thông tin này";
+        const error2 = "Lớp học đã tồn tại."
+        // fix lỗi Xss (cross-site Script)
+        function fixXss(input) {
+            input = `${input}`.replaceAll("&", "&amp;");
+            input = input.replaceAll("<", "&lt;");
+            input = input.replaceAll(">", "&gt;");
+            input = input.replaceAll("'", "&apos;");
+            input = input.replaceAll('"', "&quot;");
+            return input;
+        }
+        // check tồn tại thông tin sinh viên
+        function existStudent(classInput, studentName, yearOfBirth) {
+            for (let i = 0; i < listClassInfo.length; i++) {
+                if (listClassInfo[i].class == `${classInput}`) {
+                    for (let j = 0; j < listClassInfo[i].students.lenght; j++) {
+                        if (listClassInfo[i].student[j].name == studentName && listClassInfo[i].student[j].yearOfBirth == yearOfBirth) {
+                            document.getElementById("exist-student").innerText = `sinh viên "${studentName}", sinh năm ${yearOfBirth} đã tồn tại trong lớp ${classInput}.`;
+                            document.getElementById("exist-student").style.display = "block";
+                            return true;
+                        }
+                    }
+                }
+            }
+            // dùng nhưng element luôn là undified
+            /*listClassInfo.forEach(element => {
+                console.log(element);
+                if(element.class == `${classInput}` && typeof(element.students) != undefined){
+                    element.students.forEach(student => {
+                        if(student.name == studentName && student.yearOfBirth == yearOfBirth){
+                            
+                        }
+                    });
+                }
+            });
+            */
+            document.getElementById("exist-student").style.display = "none";
+            return false;
+        }
+
+        // validate input
+        function errorInput(input, id) {
+            // nếu không nhập
+            if (`${input}` == '') {
+                document.getElementById(`${id}`).innerText = error1;
+                document.getElementById(`${id}`).style.display = "block";
+                document.getElementById("button").style.alignSelf = "center";
+                return true;
+                // nếu lớp đã được add trước đó
+            } else if (listClassInfo.some(classInfo => { return classInfo.class == `${input}` }) && `${id}` == "class-massage") {
+                document.getElementById(`${id}`).innerText = error2;
+                document.getElementById(`${id}`).style.display = "block";
+                document.getElementById("button").style.alignSelf = "center";
+                return true;
+            }
+
+            // xử lý hiển thị vị trí button Thêm lớp học.
+            if (`${id}` == "class-massage") {
+                document.getElementById("button").style.alignSelf = "flex-end";
+            }
+            document.getElementById(`${id}`).style.display = "none";
+            return false;
+        }
+
+        // xử lý button thêm lớp học
+        function addClass() {
+            // get input
+            var classInput = fixXss(document.getElementById("class-input").value).trim();
+            var teacherInput = fixXss(document.getElementById("teacher-input").value).trim();
+
+            // validate data input
+            if (errorInput(classInput, "class-massage") | errorInput(teacherInput, "teacher-massage")) {
+                return;
+            }
+            // add thông tin lớp học
+            listClassInfo.push({ class: classInput, teacher: teacherInput, students: [] });
+
+            // in lớp học ra màn hình select
+            document.getElementById("class-list").innerHTML = "<option></option>";
+            listClassInfo.forEach(classInfo => { document.getElementById("class-list").innerHTML += `<option>${classInfo.class}</option>` });
+
+            // refresh lại event select lớp
+            selectedClass();
+        }
+
+        // xử lý button thêm sinh viên
+        function addStudent() {
+
+            // get data input
+            var studentNameInput = fixXss(document.getElementById("student-name-input").value).trim();
+            var classSelected = fixXss(document.getElementById("class-list").value).trim();
+            var yearOfBirth = parseInt(fixXss(document.getElementById("Year-of-birth").value).trim());
+
+            // validate data input
+            // validate require field
+            if (errorInput(classSelected, "class-seleted") | errorInput(studentNameInput, "student-name-massage")) {
+                return;
+            }
+            //debugger;
+            // check exists student
+            if (existStudent(classSelected, studentNameInput, yearOfBirth)) {
+                return;
+            }
+            //debugger
+            // add vào mảng danh sách học sinh trong đối tượng lớp học
+            for (let i = 0; i < listClassInfo.length; i++) {
+                if (listClassInfo[i].class == classSelected) {
+                    listClassInfo[i].students.push({ name: studentNameInput, yearOfBirth: yearOfBirth });
+                }
+            }
+            /* Dùng nhưng element luôn là undified
+            listClassInfo.forEach(element => {
+                if (element.class == classSelected) {
+                    element.students.push({ name: studentNameInput, yearOfBirth: yearOfBirth });
+                }
+            });*/
+
+            // hiển thị danh sách sinh viên
+            selectedClass();
+
+        }
+
+        // xử lý sự kiện chọn lớp học
+        function selectedClass() {
+            var classSelected = fixXss(document.getElementById("class-list").value).trim();
+            //debugger;
+            // tìm class và check số lượng hoc sinh
+            for (let i = 0; i < listClassInfo.length; i++) {
+                if (listClassInfo[i].class == classSelected) {
+                    document.getElementById("info-sinh-vien").innerText = `Đang có ${listClassInfo[i].students.length} học sinh`;
+                    document.getElementById("info-sinh-vien").style.display = 'block';
+                    document.getElementById("sum-student").innerText = `Tổng số sinh viên hiện tại: ${listClassInfo[i].students.length} sinh viên`;
+                    // Hiển thị list sinh viên
+                    document.getElementById("data").innerHTML = "<tr><th>STT</th><th>Họ tên</th><th>Năm sinh</th><th>Giáo viên chủ nhiệm</th></tr>"
+                    for (let j = 0; j < listClassInfo[i].students.length; j++) {
+                        document.getElementById("data").innerHTML += `<tr><td>${j + 1}</td><td>${listClassInfo[i].students[j].name}</td><td>${listClassInfo[i].students[j].yearOfBirth}</td><td>${listClassInfo[i].teacher}</td></tr>`
+                    }
+                    document.getElementById("danh-sach-sv").style.display = "block";
+                    return;
+                } else {
+                    document.getElementById("info-sinh-vien").style.display = 'none';
+                    document.getElementById("danh-sach-sv").style.display = "none";
+                }
+            }
+
+            /* Dùng nhưng element luôn là undified
+            listClassInfo.forEach(element => {
+                if(element.class == classSelected){
+                    document.getElementById("info-sinh-vien").innerText = `Đang có ${element.students.lenght} học sinh`
+                }
+            });*/
+        }
+    </script>
+</body>
+
+</html>

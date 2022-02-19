@@ -98,6 +98,7 @@ Buổi 8:
             shift(): xóa phần tử đầu mảng
             splice(vị trí phần tử đầu tiên,n): xóa n phần tử bắt đầu ở vị trí đầu tiên 
             concat([mảng]): nối mảng
+            join("-"): print phần tử trong mảng phân tách bới -
     9. String
         - concat(str): công chuỗi
         - lengh: số lượng kí tự của String
@@ -135,9 +136,14 @@ Buổi 8:
 
             person.setName = "PhuongNH";
             var name = person.getName;
+        - Object.keys(object): => get mảng key của JSON
 
 -------------------------------------
 
  - set sự kiện trong js: addEvenListener
  - Mảng a = [...b]: a copy các phần tử của b. b không bị ảnh hưởng
         a = b => mảng a hoặc b thay đổi => mảng còn lại cũng bị thay đổi
+        thêm dòng code debugger để đặt debug
+        F5: Skip debug
+        F10; Next line
+        F11; into function
