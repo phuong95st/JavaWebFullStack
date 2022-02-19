@@ -160,7 +160,7 @@
         <hr>
         <!--Danh sách sinh viên-->
         <div class="list-student">
-            <h2 class="title">Danh sách học sinh</h2>
+            <h2 class="title">Danh sách sinh viên</h2>
             <div class="left" id="danh-sach-sv" hidden>
                 <p class="info" id="sum-student">Tổng số học sinh hiện tại: 0 học sinh</p>
                 <table id="data">
@@ -290,7 +290,7 @@
             if (errorInput(classSelected, "class-seleted") | errorInput(studentNameInput, "student-name-massage")) {
                 return;
             }
-            debugger;
+            //debugger;
             // check exists student
             if (existStudent(classSelected, studentNameInput, yearOfBirth)) {
                 return;
