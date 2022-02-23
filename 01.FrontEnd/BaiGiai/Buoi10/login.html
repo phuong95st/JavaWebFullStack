@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p style="display: flex;">abc<input /></p>
+    <button>ket qua</button>
+    <input id="a"/>
+    <ul id="b">
+        
+    </ul>
+    <button onclick="add()">Thêm</button>
+    <button onclick="run()">Chạy</button>
+    <p id="c"></p>
+    <script>
+        function add(){
+           document.getElementById("b").innerHTML +=`<li>${document.getElementById("a").value}</li>`;
+        }
+        function run(){
+            var count  = 0;
+            setInterval(function(){
+                fillColor(count);
+                count++;
+            }, 1000);
+        }
+        function fillColor(count){
+            var list = document.getElementsByTagName('li');
+            list[count].style.background="red";
+            setTotal(count + 1);
+            readTotal();
+        }
+        function setTotal(count){
+            localStorage.setItem('total-color', count);
+        }
+        function readTotal(){
+            var local = localStorage.getItem('total-color');
+            if(local != null){
+                document.getElementById("c").innerText = "Số ô màu đã được tô:" + local;
+            }
+        }
+        readTotal();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Buổi 10] Bài tập</title>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <button type="button" onclick='clickBtnAdd();'>Thêm</button>
+    <button type="button" id="btn-interval" onclick="run()">Set Interval</button>
+    <br><br>
+    <p id="resul"></p>
+    <ul id="ul-list">
+
+    </ul>
+    <script>
+        //common
+        var common = {
+            fixXss: function (input) {
+                input = `${input}`.replaceAll("&", "&amp;");
+                input = input.replaceAll("<", "&lt;");
+                input = input.replaceAll(">", "&gt;");
+                input = input.replaceAll("'", "&apos;");
+                input = input.replaceAll('"', "&quot;");
+                return input;
+            },
+            displayResult: function () {
+                var totalLi = localStorage.getItem("total-li");
+                if (totalLi != undefined) {
+                    document.getElementById("resul").innerText = `Số li đã bôi màu: ${totalLi}`;
+                }
+            },
+            fillColor: function (i) {
+                let liList = document.getElementsByTagName("li");
+                if (liList[+i] != undefined) {
+                    liList[+i].style.background = "red";
+                    // set localstorage
+                    localStorage.setItem("total-li", `${i + 1}`);
+                    // hiển thị
+                    this.displayResult();
+                }
+            }
+        };
+
+        // click butotn Add
+        function clickBtnAdd() {
+            var input = document.getElementById("input");
+            var ul = document.getElementById("ul-list");
+            var value = "<li>" + common.fixXss(input.value).trim() + "</li>";
+            // Hiển thị 
+            ul.innerHTML += value;
+        }
+
+        // click button Set interval
+        function run() {
+            var i = 0;
+            var myInterval = setInterval(() => {
+                try {
+                    common.fillColor(i);
+                    i++;
+                } catch (error) {
+                    clearInterval(myInterval);
+                }
+            }, 1000);
+
+        }
+        common.displayResult();
+    </script>
+</body>
+
+</html>

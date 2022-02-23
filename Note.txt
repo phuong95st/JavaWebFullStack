@@ -83,10 +83,27 @@ Buổi 8:
     2. Khai báo hàm
     3. Kiểu dữ liệu
     4. DOM trong JS
+        - DOM event: có 3 cách
+            1. Gọi trực tiếp tiếp thuộc tính trong thẻ html: <button onClick"" id="btn"></button>
+            2. Thêm thuộc tinh onClick trong html bằng jS: document.getElementById("btn").onClick = function {};
+            3. Gọi bằng hàm addEvenListener: document.getElementById("btn").addEvenListener("click",function{});
+        - DOM relationship (quan hệ giữa các phần tử html):
+            + children: tập hợp html collection mà là con trực tiếp của thẻ cha. 
+                Truy cập phần tử nào thì dùng như mảng.
+            + firstElementChild: Trả về html element mà là con trực tiếp đầu tiên
+            + lastElementChild: Trả về html element mà con trực tiếp cuối cùng 
+            + nextElementSibling: Trả về html tiếp theo so với html hiện tại
+            + parentElement: Trả về html cha trực tiếp của html hiện tại
+        - DOM node
+            + document.createElement("html element"): Tạo 1 html element
+            + li.appendChild(a): cho thẻ a vào làm con của thẻ li ở vị trí cuối: 
+            + li.prepend(a): cho thẻ a vào làm con của thẻ li ở vị trí đầu
+            + ul.replaceChild(element cũ, element mới): Thay thết element cũ bằng element mới mà là con của ul
+            + ul.removeChild(li): xóa phần tử li trong thằng ul
     5. Vòng lặp, hàm trong JS hỗ trợ
     6. JSON: 
         javascript object notation. Cấu trúc chuỗi text theo dạng đối tượng trong JS. Trao đổi dữ liệu qua lại giữa các nền tảng
-        - Convert từ Object => JSON: JSON.stringigy(object)
+        - Convert từ Object => JSON: JSON.stringify(object)
         - convert từ JSON -> Object: JSON.parse(json)
     7. Ajax
     8. Array:
@@ -137,6 +154,47 @@ Buổi 8:
             person.setName = "PhuongNH";
             var name = person.getName;
         - Object.keys(object): => get mảng key của JSON
+    
+    11. localStorage, sessionStorage: Lưu trữ data dạng key-value. Chỉ lưu data dạng string
+        localStorage: Data lưu trữ có thể sử dụng chung ở nhiều tab.
+        sessionStorage: data lưu trưc chỉ có thể sử dụng trong tab hiện tại
+    12. Timming Events: gọi xử lý 1 funtion sau 1 khoảng thời gian
+        - windown.setTimeout(function(){}, 5000): xử lý function sau khoảng 5000 ms
+        - windown.setInterval(function(){}, 1000): Xử lý function sau khoảng 1000 ms, function sẽ xử lý lặp đi lặp lại sau 1000ms
+
+        - windown.clearTimeout(setTimeout(function(){}, 1000)): Dừng việc xử lý function khi chưa hết 1000ms
+        - windown.clearInterval(setInterval(function(){}, 5000)): Dừng việc xử lý lặp đi lặp lại function khi chưa hết 5000ms
+    13. location: 
+        - location.reload(): Reload lại trang html
+        - location.href = url: Chuyển hướng trang html
+        - location.pathName: lấy đường dẫn tương đối của url
+        - location.port: lấy port của url
+    14: Navigator: Truy xuất thông tin của trình duyệt
+        - navigator.appName
+        - navigator.appVersion
+        - navigator.cookieEnabled
+        - navigator.userAgent
+    15. windown
+        - windown.innerHeight: lấy chiều cao hiện tịa của trình duyệt
+        - windown.innerWidth: Lấy chiều rộng hiện tại của trình duyệt
+        - windown.open(): new tab
+        - windown.close(): close tab
+
+        // screen object
+        - screen.width: chiều rộng fix cứng của thiết bị
+        - screen.height: Chiều cao fix cứng của thiết bị
+        - screen.avaiHeight: chiều cao sau khi trừ đi các thành phần như toolbar, ...
+    16. Cookie: 1 chuỗi string chứa các cặp key-value có thời gian sống nhất định, lưu trên client
+        - document.cookie: lấy chuỗi cookie, trả về dạng string;
+        - "expires": thời gian sống của cookie
+        - path: Đướng dẫn của cookie
+        - delete cookie: set time của cookie về quá khứ
+    17. Geo Location: Lấy vị trí hiện tại.
+        - Trình duyệt phải hỗ trợ geo location
+        - navigator.geolocation.getCurrentPosition(funnction success(), function error());
+        => Nếu cho phép trình duyệt truy cập location => xử lý function success(position), ngược lại xử lý function error(err)
+        - position.coords: lấy ra đối tượng đối tượng chứa thông tin vị trí hiện tại
+    18. async await
 
 -------------------------------------
 
