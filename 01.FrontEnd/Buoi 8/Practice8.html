@@ -1,54 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function isErrorInput(a,b,action){
-            var error = false;
-            if(a == '' && b == ''){
-                document.getElementById('error').innerText = 'Please input a and b.';
-                error = true;
-            }else if (a == ''){
-                document.getElementById('error').innerText = 'Please input a.';
-                error = true;
-            }else if(b == ''){
-                document.getElementById('error').innerText = 'Please input b.';
-                error = true;
-            }else if (action === '/' && b == 0){
-                document.getElementById('error').innerText = 'Please input b diferrent 0';
-                error = true;
-            }
 
-            if(error){
-                document.getElementById('error').style.color='red';
-                document.getElementById('error').style.display='block';
-                return true;
-            }
-            return false;
-        }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        function calculate(action){
-            var a = document.getElementById('a').value;
-            var b = document.getElementById('b').value;
 
-            if(isErrorInput(a,b,action)){
-                return;
-            }
-            document.getElementById('error').innerText = eval(a + action + ' '  + b) ;
-            document.getElementById('error').style.display = 'block';
-        }
-
-        function reset(){
-            document.getElementById('a').value = '';
-            document.getElementById('b').value = '';
-            console.log(a +' '+ b);
-            document.getElementById('error').style.display = 'none';
-        }
-    </script>
 </head>
+
 <body>
     <div>
         <form>
@@ -64,5 +27,73 @@
             <button onclick="reset()">Reset</button>
         </form>
     </div>
+
+    <script>
+        function isErrorInput(a, b, action) {
+            var error = false;
+            if (a == '' && b == '') {
+                //document.getElementById('error').innerText = 'Please input a and b.';
+                // jquery
+                $("#error").text("Please input a and b.");
+                error = true;
+            } else if (a == '') {
+                //document.getElementById('error').innerText = 'Please input a.';
+                // jquery
+                $("#error").text("Please input a.");
+                error = true;
+            } else if (b == '') {
+                //document.getElementById('error').innerText = 'Please input b.';
+                // jquery
+                $("#error").text("Please input b.");
+                error = true;
+            } else if (action === '/' && b == 0) {
+                //document.getElementById('error').innerText = 'Please input b diferrent 0';
+                // jquery
+                $("#error").text("Please input b diferrent 0");
+                error = true;
+            }
+
+            if (error) {
+                //document.getElementById('error').style.color = 'red';
+                //document.getElementById('error').style.display = 'block';
+                // jquery
+                $("#error").css("color", "red");
+                $("#error").css("display", "block");
+                return true;
+            }
+            return false;
+        }
+
+        function calculate(action) {
+            debugger
+            //var a = document.getElementById('a').value;
+            //var b = document.getElementById('b').value;
+            // jquery
+            var a = $("#a").val().trim();
+            var b = $("#b").val().trim();
+
+            if (isErrorInput(a, b, action)) {
+                return;
+            }
+            //document.getElementById('error').innerText = eval(a + action + ' ' + b);
+            //document.getElementById('error').style.display = 'block';
+            // jquery
+            $("#error").text(eval(a + action + ' ' + b));
+        }
+
+        function reset() {
+            //document.getElementById('a').value = '';
+            //document.getElementById('b').value = '';
+            // jquery
+            $("#a").val() = "";
+            $("#b").val() = "";
+            console.log(a + ' ' + b);
+            //document.getElementById('error').style.display = 'none';
+            // jquery
+            $("#error").css("display", "none");
+        }
+
+    </script>
 </body>
+
 </html>

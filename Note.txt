@@ -205,3 +205,10 @@ Buổi 8:
         F5: Skip debug
         F10; Next line
         F11; into function
+
+---------------------------------------
+Buoi 11
+ - XMLHttpRequest
+ - Ajax
+ - Jquery: Thư viện JS để đỡ phải code JS nhiều
+ - Bootstrap: Thư viện hỗ trợ css nhanh hơn
