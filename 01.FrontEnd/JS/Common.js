@@ -24,6 +24,7 @@ const common = {
         return input;
     },
     sort: (arrObj, attr) => {
+        debugger
         arrObj.sort((itemA, itemB) => {
             return itemA[attr] - itemB[attr];
         })

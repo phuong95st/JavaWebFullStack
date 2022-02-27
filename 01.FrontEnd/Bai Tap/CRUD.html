@@ -367,12 +367,13 @@
             }
 
             // sort list student
+            debugger;
             common.sort(classInfo[0].students, "id");
 
             // add student
             classInfo[0].students.push({
                 // lấy student id lớn nhất + 1
-                id: classInfo[0].students[classInfo[0].students.length - 1] + 1,
+                id: classInfo[0].students[classInfo[0].students.length - 1].id + 1,
                 name: iptStudentName,
                 yearOfBirth: iptYearOfBirth
             })
