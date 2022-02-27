@@ -1,0 +1,34 @@
+.margin{
+    padding-left: 50px;
+}
+.upper-case{
+    text-transform: uppercase;
+}
+.bold{
+    font-weight: bold;
+}
+.mesage{
+    font-size: 12px;
+}
+.text-red{
+    color: red;
+}
+.text-blue{
+    color: blue;
+}
+.ipt-with{
+    width: 70%;
+}
+.ipt-outline{
+    outline: none;
+}
+.btn-offset{
+    height: 24px;
+}
+.form-control:focus{
+    box-shadow: none
+}
+.btn-warning,.btn-danger{
+    padding: 0px 6px;
+    font-size: 13px;
+}

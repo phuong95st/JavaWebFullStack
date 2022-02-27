@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Bai Tập] CRUD</title>
+    <!--Bootstrap cdn-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Jquery cdn-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- bootbox.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+    <!--my css-->
+    <link href="../css/styleCRUD.css" rel="stylesheet">
+    <!--my js-->
+    <script src="../JS/Common.js"></script>
+    <!--icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!--Interface with bootstrap-->
+    <div class="container">
+        <!--Thông tin lớp-->
+        <div class="row">
+            <p class="upper-case bold">Thông tin lớp học</p>
+            <div class="row margin">
+                <div class="col-lg-3">
+                    <p class="bold">Lớp <span class="text-red">*</span></p>
+                    <input type="text" class=" form-control ipt-with" id="ipt-class">
+                    <p class="mesage text-red" id="msg-class">Bạn cần phải nhập thông tin này</p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="bold">Giáo viên chủ nhiệm <span class="text-red">*</span></p>
+                    <input type="text" class="form-control ipt-with" id="ipt-teacher">
+                    <p class="mesage text-red" id="msg-teacher">Bạn cần phải nhập thông tin này</p>
+                </div>
+                <div class="col-lg-3 offset-lg-3">
+                    <p class="btn-offset"></p>
+                    <button type="button" class="btn btn-primary" id="btn-add-class"><i class="fa fa-plus"></i>
+                        Add</button>
+                    <button type="button" class="btn btn-primary" id="btn-update-class"><i class="fa fa-edit"></i>
+                        Update</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!--Thông tin sinh viên-->
+        <div class="row">
+            <p class="upper-case bold">Thông tin sinh viên</p>
+            <div class="row margin">
+                <div class="col-lg-3">
+                    <p class="bold">Danh sách lớp <span class="text-red">*</span></p>
+                    <select class="ipt-with form-select" id="sel-class">
+                        <option value=""></option>
+                    </select>
+                    <p class="mesage text-red" id="msg-class_selected">Bạn cần phải nhập thông tin này</p>
+                    <p class="mesage text-blue" id="msg-count-student">Đang có 0 học sinh</p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="bold">Họ tên sinh viên <span class="text-red">*</span></p>
+                    <input type="text" class="form-control ipt-with" id="ipt-name">
+                    <p class="mesage text-red" id="msg-name">Bạn cần phải nhập thông tin này</p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="bold">Năm sinh</p>
+                    <select id="year" class="form-select ipt-with">
+
+                    </select>
+                </div>
+                <div class="col-lg-3">
+                    <p class="btn-offset"></p>
+                    <button type="button" class="btn btn-primary" id="btn-add-student"><i class="fa fa-plus"></i>
+                        Add</button>
+                    <button type="button" class="btn btn-primary" id="btn-update-student"><i class="fa fa-edit"></i>
+                        Update</button>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <!--Danh sách học sinh-->
+        <div class="row">
+            <p class="bold upper-case">Danh sách học sinh</p>
+            <div class="col-lg-12 margin">
+                <p class="mesage text-blue" id="total-student">Tổng số học sinh hiện tại: 0 học sinh</p>
+                <table class="table table-bordered col-lg-12">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Họ tên</th>
+                            <th>Năm sinh</th>
+                            <th>Giáo viên chủ nhiệm</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        "use strict";
+        // danh sách lớp.
+        var arrClass = (JSON.parse(localStorage.getItem("arrClass")) === null) ? [] : JSON.parse(localStorage.getItem("arrClass"));
+
+        // process background set localStorage
+        setInterval(() => {
+            if (arrClass != null) {
+                localStorage.setItem("arrClass", JSON.stringify(arrClass));
+            }
+        }, 5000);
+
+        // selectClass
+        function selectClass() {
+            var iptSelected = $("#sel-class").val();
+
+            // tìm lớp
+            var classInfo = arrClass.filter((item) => {
+                return item.class == iptSelected;
+            })
+
+            // hiển thị danh sách
+            $("#msg-count-student").text(`Đang có ${(classInfo.length > 0) ? classInfo[0].students.length : 0} học sinh`)
+            $("#msg-count-student").css("display", "block")
+            $("#total-student").text(`Tổng số học sinh hiện tại: ${(classInfo.length > 0) ? classInfo[0].students.length : 0} học sinh`)
+            $("#total-student").css("display", "block")
+            if (classInfo.length > 0 && classInfo[0].students.length > 0) {
+                $("#data").html("");
+                for (const item of classInfo[0].students) {
+                    let str = "<tr>";
+                    str += `<td>${item.id}</td>`;
+                    str += `<td>${item.name}</td>`;
+                    str += `<td>${item.yearOfBirth}</td>`;
+                    str += `<td>${classInfo[0].teacher}</td>`;
+                    str += `<td><a class="btn btn-warning" href="?action=edit&class=${classInfo[0].class}&studentId=${item.id}"><i class="fa fa-edit"></i> Edit</a> | <a class="btn btn-danger" href="?action=delete&class=${classInfo[0].class}&studentId=${item.id}"><i class="fa fa-remove"> Delete</i></a></td>`;
+                    str += "</tr>";
+                    $("#data").html($("#data").html() + str);
+                }
+            } else {
+                $("#data").html('<tr><td colspan="5" style="text-align:center">No data</td></tr>');
+            }
+        }
+
+        // validate url
+        // return mảng 2 phần tử
+        // 1. 0: đang call trang index. <0: là update, >0: delete
+        // 2. thông tin lớp đang edit
+        // 3. thông tin sinh viên đang edit
+        function validateUrl(urlParam) {
+            let className = common.getAttrUrl(urlParam, "class");
+            let studentId = common.getAttrUrl(urlParam, "studentId");
+            let action = common.getAttrUrl(urlParam, "action");
+
+            // không modify
+            if ((action != common.edit && action != common.delete) || className == null || studentId == null) {
+                return [0, null, null];
+            }
+
+            className = common.fixXss(className.trim());
+            studentId = common.fixXss(studentId.trim());
+
+            // edit
+            let classInfo = arrClass.filter((item) => {
+                return item.class == className;
+            })
+            // thông tin class tồn tại
+            if (classInfo.length > 0) {
+                // tìm thông tin sinh viên tương ứng id
+                let studentInfo = classInfo[0].students.filter((item) => {
+                    return item.id == +studentId;
+                })
+                // thông tin sinh viên không tồn tại
+                if (studentInfo.length == 0) {
+                    return [(action == common.edit) ? -1 : 1, classInfo[0], null];
+                }
+                // thông tin sinh viên tồn tại
+                return [(action == common.edit) ? -1 : 1, classInfo[0], studentInfo[0]];
+            }
+            // thông tin class không tồn tại
+            return [(action == common.edit) ? -1 : 1, null, null];
+
+        }
+
+        // load page
+        $(document).ready(
+            () => {
+                // xử lý load data
+                let curYear = new Date().getFullYear();
+                $("#year").html("");
+                for (let i = 1900; i <= curYear; i++) {
+                    $("#year").html($("#year").html() + `<option value="${i}">${i}</option>`);
+                }
+
+                // display class
+                $("#sel-class").html('<option value=""></option>');
+                for (const item of arrClass) {
+                    common.displaySelect($("#sel-class"), item.class, item.class);
+                }
+
+                // disable các mesage
+                $(".mesage").css("display", "none");
+
+                //clear all input
+                $("input").val("");
+
+                //validate url
+                debugger
+                let isUrl = validateUrl(location.href);
+                if (isUrl[0] == 0) {
+                    // set hiển thị btn trang index
+                    $("#btn-update-class").css("display", "none");
+                    $("#btn-add-class").css("display", "block");
+                    $("#btn-update-student").css("display", "none");
+                    $("#btn-add-student").css("display", "block");
+
+                    // hiển thị list student
+                    selectClass();
+                    return
+                }
+                // url có lỗi
+                if (isUrl[1] == null) {
+                    bootbox.alert({
+                        title: location.hostname + ":" + location.port,
+                        message: `Không tồn tại lớp ${common.getAttrUrl(location.href, "class")}`,
+                        size: "large",
+                        callback: () => {
+                            window.location = location.pathname;
+                        }
+                    });
+                    return;
+                }
+
+                if (isUrl[2] == null) {
+                    bootbox.alert({
+                        title: location.hostname + ":" + location.port,
+                        message: `Không tồn tại sinh viên id:${common.getAttrUrl(location.href, "studentId")}`,
+                        size: "large",
+                        callback: () => {
+                            window.location = location.pathname;
+                        }
+                    });
+                    return;
+                }
+
+                // set hiển thị
+                $("#ipt-class").attr("disabled", "true");
+                $("#btn-add-class").css("display", "none");
+                $("#btn-update-class").css("display", "block");
+                $("#sel-class").attr("disabled", "true");
+                $("#btn-update-student").css("display", "block");
+                $("#btn-add-student").css("display", "none");
+
+                //set data chung cho edit và delete
+                $("#ipt-class").val(isUrl[1].class);
+                $("#ipt-teacher").val(isUrl[1].teacher);
+                $("#sel-class").val(isUrl[1].class);
+                $("#ipt-name").val(isUrl[2].name);
+                $("#year").val(isUrl[2].yearOfBirth);
+
+                // edit
+                if (isUrl[0] > 0) {
+                    // confirm
+                    bootbox.confirm({
+                        title: location.hostname + ":" + location.port,
+                        message: `Bạn có chắc chắn muốn xóa sinh viên ${isUrl[2].name} khỏi lớp ${isUrl[1].class}?`,
+                        callback: function (result) {
+                            if (result) {
+                                // xử lý delete
+                                console.log(isUrl[1]);
+                                isUrl[1].students = isUrl[1].students.filter((item) => {
+                                    return item.id != isUrl[2].id
+                                })
+                                console.log(isUrl[1]);
+
+                                // clear student
+                                $("#ipt-name").val("");
+                                $("#year").val("");
+
+                                // Hiển thị data student
+                                selectClass();
+                            }
+                        }
+                    });
+                }
+
+                // Hiển thị data student
+                selectClass();
+            }
+
+        )
+
+        // even click button add class
+        $("#btn-add-class").click(() => {
+            var iptClass = common.fixXss($("#ipt-class").val().trim());
+            var iptTeacher = common.fixXss($("#ipt-teacher").val().trim());
+
+            // validate require
+            if (common.isRequire(iptClass, $("#msg-class")) | common.isRequire(iptTeacher, $("#msg-teacher"))) {
+                return;
+            }
+
+            // validate double
+            if (arrClass.some((item) => {
+                return item.class == iptClass
+            })) {
+                $("#msg-class").css("display", "block");
+                return;
+            } else {
+                $("#msg-class").css("display", "none");
+            }
+
+            // add data vào object
+            arrClass.push({
+                class: iptClass,
+                teacher: iptTeacher,
+                students: []
+            })
+
+            // display class
+            $("#sel-class").html('<option value=""></option>');
+            for (const item of arrClass) {
+                common.displaySelect($("#sel-class"), item.class, item.class);
+            }
+
+        })
+
+        // xử lý sự kiện chọn lớp
+        $("#sel-class").change(() => {
+            selectClass();
+        })
+
+        // xử lý sự kiện thêm sinh viên
+        $("#btn-add-student").click(() => {
+            let iptClass = common.fixXss($("#sel-class").val().trim());
+            let iptStudentName = common.fixXss($("#ipt-name").val().trim());
+            let iptYearOfBirth = common.fixXss($("#year").val().trim());
+
+            //validate require
+            if (common.isRequire(iptClass, $("#msg-class_selected")) | common.isRequire(iptStudentName, $("#msg-name"))) {
+                return;
+            }
+
+            //validte double student
+            let classInfo = arrClass.filter((item) => {
+                return item.class == iptClass;
+            })
+            if (classInfo[0].students.length > 0) {
+                if (classInfo[0].students.some((item) => {
+                    return item.name == iptStudentName && item.yearOfBirth == iptYearOfBirth
+                })) {
+                    bootbox.alert({
+                        title: location.hostname + ":" + location.port,
+                        message: `Sinh viên ${iptStudentName}, sinh năm ${iptYearOfBirth} đã tồn tại trong lớp ${iptClass}.`,
+                        size: "large"
+
+                    })
+                    return;
+                }
+            }
+
+            // sort list student
+            common.sort(classInfo[0].students, "id");
+
+            // add student
+            classInfo[0].students.push({
+                // lấy student id lớn nhất + 1
+                id: classInfo[0].students[classInfo[0].students.length - 1] + 1,
+                name: iptStudentName,
+                yearOfBirth: iptYearOfBirth
+            })
+
+            //hiển thị
+            selectClass();
+        })
+
+        // update thông tin class
+        $("#btn-update-class").click(() => {
+            debugger
+            // validate url
+            let isUrl = validateUrl(location.href);
+            if (isUrl[0] == 0 || isUrl[1] == null || isUrl[2] == null) {
+                window.location = location.pathname;
+                return;
+            }
+            if (isUrl[0] > 0) {
+                bootbox.alert({
+                    title: location.hostname + ":" + location.port,
+                    message: `Vui lòng không chỉnh sửa url.`,
+                    size: "large"
+                })
+                return;
+            }
+
+            // xử lý edit
+            // get data new
+            let teacherNew = common.fixXss($("#ipt-teacher").val().trim());
+
+            // validate require
+            if (common.isRequire(teacherNew, $("#msg-teacher"))) {
+                return;
+            }
+
+            isUrl[1].teacher = teacherNew;
+
+            selectClass();
+
+        })
+
+        // update thông tin lớp
+        $("#btn-update-student").click(() => {
+            // validate url
+            let isUrl = validateUrl(location.href);
+            if (!isUrl[0] || isUrl[1] == null || isUrl[2] == null) {
+                window.location = location.pathname;
+                return;
+            }
+            if (isUrl[0] > 0) {
+                bootbox.alert({
+                    title: location.hostname + ":" + location.port,
+                    message: `Vui lòng không chỉnh sửa url.`,
+                    size: "large"
+                })
+                return;
+            }
+
+            let stuNameNew = common.fixXss($("#ipt-name").val().trim());
+            let yearOfBirthNew = common.fixXss($("#year").val().trim());
+
+            // validate require
+            if (common.isRequire(stuNameNew, $("#msg-name"))) {
+                return;
+            }
+            // xử lý update
+            isUrl[2].name = stuNameNew;
+            isUrl[2].yearOfBirth = yearOfBirthNew;
+
+            selectClass();
+        })
+    </script>
+</body>
+
+</html>
