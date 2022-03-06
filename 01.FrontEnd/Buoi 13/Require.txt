@@ -1,0 +1,9 @@
+- Sau 10s mới kiểm tra click hay không
+    Nếu không click thì nhảy đến slide khác tự động.
+- nhấn watch => alert đường dẫn + id bộ phim. ví dụ: https://www.abc.com/homepage?idfile=1
+- Sign in => link to google.com 
+- animation: hình ảnh slide lướt qua.
+- full screen
+
+- >=998px => 
+- <998px => 

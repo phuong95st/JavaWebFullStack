@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Jquery cdn-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>[Practice 13] Thực hành</title>
+    <style>
+        :root {
+            --urlFilm: url('./img/AvengersBanner.jpg');
+        }
+
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            background-color: #212121;
+            color: white;
+        }
+
+        .film {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .control-banner-film {
+            display: flex;
+            height: 60vh;
+            /*background-image: url("./img/AvengersBanner.jpg");*/
+            /*background-color: #212121;*/
+            position: relative;
+            /*animation: backgroundImg 13.5 linear 3;*/
+        }
+
+        .control-banner-film::before {
+            content: "";
+            width: 35%;
+            height: 60vh;
+            float: left;
+            background-color: black;
+            opacity: 0.6;
+
+        }
+
+        .control-film {
+            width: 35%;
+            /*background-color: #100202;*/
+            height: 60vh;
+            display: flex;
+            position: absolute;
+        }
+
+        .banner-film {
+            width: 65%;
+            /*height: 60vh;*/
+            /*background-color: brown;
+            background-repeat: no-repeat;
+            background-size: cover;*/
+        }
+
+        .sosial {
+            flex-basis: 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .pading {
+            padding: 5px
+        }
+
+        .margin-top-button {
+            margin: 5px 0px;
+        }
+
+        .margin {
+            margin: 5px;
+        }
+
+        .control-btn {
+            flex-basis: 90%;
+        }
+
+        .button {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .list-film {
+            display: none;
+        }
+
+        .button-title {
+            text-align: center;
+            font-size: 35px;
+            margin-top: 0;
+        }
+
+        .btn {
+            width: 60%;
+            border: none;
+            font-size: 23px;
+        }
+
+        .btn-watch {
+            background-color: #AC0C0C;
+            color: white;
+
+        }
+
+        .btn:hover {
+            cursor: pointer;
+        }
+
+        .item-film,
+        .item-film-sm {
+            width: 12px;
+            height: 12px;
+            background-color: #614132;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .item-film:hover,
+        .item-film-sm:hover {
+            opacity: .7;
+        }
+
+        .item-film-active {
+            width: 17px;
+            height: 17px;
+            background-color: white;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .carousel,
+        .carousel-sm {
+            justify-content: center;
+            margin-bottom: 5px;
+            align-items: center;
+        }
+
+        .banner-film {
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .id-film {
+            flex-basis: 22%;
+            border-right: solid 0.5px #767676;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .description-film {
+            flex-basis: 77%;
+            padding-left: 30px;
+            padding-right: 20px;
+        }
+
+        .detail-film {
+            height: 40vh;
+        }
+
+        .id {
+            font-size: 160px;
+            margin: 0px;
+            font-weight: bold;
+        }
+
+        .id::after {
+            content: ".";
+        }
+
+        .title-film {
+            font-size: 40px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .line {
+            width: 20px;
+            border-bottom: solid 2px white;
+            margin-right: 10px;
+        }
+
+        .date {
+            font-size: 18px;
+        }
+
+        .desc-txt {
+            padding: 5px 0px;
+        }
+
+        .color-text-gray {
+            color: #767676;
+        }
+
+        .fa {
+            font-size: 30px;
+        }
+
+        .fa-facebook-square:hover {
+            color: #3A5592
+        }
+
+        .fa-instagram:hover {
+            color: #BA4C16
+        }
+
+        .fa-youtube-square:hover {
+            color: red
+        }
+
+        /*Media query*/
+        @media only screen and (max-width: 997px) {
+            .control-film {
+                width: 100%;
+            }
+
+            .banner-film {
+                width: 0%;
+            }
+
+            .id-film {
+                display: none;
+            }
+
+            .description-film {
+                flex-basis: 100%;
+            }
+
+            .control-banner-film::before {
+                width: 100%;
+            }
+
+            .button-title {
+                font-size: 25px;
+            }
+
+            .title-film {
+                font-size: 30px;
+            }
+
+            .desc-txt {
+                font-size: smaller;
+            }
+
+            .button {
+                height: 53vh;
+
+            }
+
+            .list-film {
+                display: flex;
+                height: 7vh;
+                justify-content: center;
+                align-items: flex-end;
+            }
+        }
+
+        /*Animation for banner film*/
+        @keyframes backgroundImg {
+            0% {
+                background-image: var(--urlFilm);
+                opacity: 0;
+            }
+            100% {
+                background-image: var(--urlFilm);
+                opacity: 1;
+            }
+        }
+
+        .film {
+            position: relative;
+        }
+
+        .film.changed:before {
+            content: "";
+            width: 100%;
+            height: 60vh;
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            animation-name: backgroundImg;
+            animation-duration: .5s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <!--all page-->
+    <div class="film">
+        <!--2 row-->
+        <div class="control-banner-film">
+            <!--Control-film-->
+            <div class="control-film">
+                <!--sosial-->
+                <div class="sosial">
+                    <div class="pading"><i class="fa fa-facebook-square"></i></div>
+                    <div class="pading"><i class="fa fa-instagram"></i></div>
+                    <div class="pading"><i class="fa fa-youtube-square"></i></div>
+                </div>
+                <!--button -->
+                <div class="control-btn">
+                    <div class="button">
+                        <p class="button-title">02. Eliet in The Movie</p>
+                        <button class="margin-top-button btn btn-watch pading">Watch</button>
+                        <button class="margin-top-button btn btn-signIn pading">Sign in</button>
+                    </div>
+                    <!--List film-->
+                    <div class="list-film">
+                        <div class="flex carousel-sm">
+                            <div class="item-film-sm margin item-film-active"
+                                onclick="bannerFilm(1,'./img/AvengersBanner.jpg','item-film-sm')"></div>
+                            <div class="item-film-sm margin"
+                                onclick="bannerFilm(2,'./img/BurningTrainBanner.jpg','item-film-sm')">
+                            </div>
+                            <div class="item-film-sm margin"
+                                onclick="bannerFilm(3,'./img/GangsterSquadBanner.jpg','item-film-sm')">
+                            </div>
+                            <div class="item-film-sm margin"
+                                onclick="bannerFilm(4,'./img/TheAVENGERSBanners.jpg','item-film-sm')">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--banner film-->
+            <div class="flex banner-film">
+                <!--List film-->
+                <div class="flex carousel">
+                    <div class="item-film margin item-film-active"
+                        onclick="bannerFilm(1,'./img/AvengersBanner.jpg','item-film')">
+                    </div>
+                    <div class="item-film margin" onclick="bannerFilm(2,'./img/BurningTrainBanner.jpg','item-film')">
+                    </div>
+                    <div class="item-film margin" onclick="bannerFilm(3,'./img/GangsterSquadBanner.jpg','item-film')">
+                    </div>
+                    <div class="item-film margin" onclick="bannerFilm(4,'./img/TheAVENGERSBanners.jpg','item-film')">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex detail-film">
+            <!--id film-->
+            <div class="flex id-film">
+                <p class="id color-text-gray">02</p>
+            </div>
+            <!--description film-->
+            <div class="description-film">
+                <p class="title-film">02. Eliet in The Movie</p>
+                <div class="flex margin-top-button">
+                    <div class="line"></div>
+                    <span class="date color-text-gray">02/27/2013</span>
+                </div>
+                <div class="desc-txt color-text-gray">Use data attributes to easily control the position of the
+                    carousel. data-slide
+                    accepts the keywords
+                    prev or next, which alters the slide position relative to its current position. Alternatively, use
+                    data-slide-to to pass a raw slide index to the carousel data-slide-to="2", which shifts the slide
+                    position to a particular index beginning with 0. The data-ride="carousel" attribute is used to mark
+                    a carousel as animating starting at page load. If you don’t use data-ride="carousel" to initialize
+                    your carousel, you have to initialize it yourself. It cannot be used in combination with (redundant
+                    and unnecessary) explicit JavaScript initialization of the same carousel.The data-ride="carousel"
+                    attribute is used to mark a carousel as animating starting at page load. If you don’t use
+                    data-ride="carousel" to initialize your carousel, you have to initialize it yourself. It cannot be
+                    used in combination with (redundant and unnecessary) explicit JavaScript initialization of the same
+                    carousel.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var listFilms = (listFilms == null) ? [] : JSON.parse(localStorage.getItem("listFilm"))
+        listFilms.push({
+            id: 1,
+            title: 'Lực Lượng Nền Móng',
+            date: new Date(2021, 10, 12),
+            desc: 'Lee Pace và Jared Harris lần lượt đóng vai Brother Day và Hari Seldon. Lou Llobell đóng vai Gaal, một thiên tài toán học đến từ một hành tinh bị đè nén, nông thôn. Leah Harvey trong vai Salvor, người quản lý bảo vệ và trực giác của một hành tinh xa xôi bên ngoài. Laura Birn vào vai Eto Demerzel , phụ tá bí ẩn của Hoàng đế Thiên hà. Terrence Mann đóng vai Brother Dusk, thành viên lớn tuổi nhất còn sống của gia đình thống trị. Cassian Bilton đóng vai Anh Dawn, thành viên trẻ nhất còn sống của gia đình cầm quyền và tiếp theo là Brother Day. Trong một đoạn giới thiệu tháng 6 năm 2021, Alfred Enochđã được tiết lộ như một phần của dàn diễn viên. Các nhân vật mới Brother Day, Brother Dusk và Brother Dawn là những nhân vật gốc được tạo ra cho bộ truyện. Mỗi người là một bản sao có độ tuổi khác nhau trong “triều đại di truyền” của Hoàng đế Cleon I: bản sao trẻ nhất được gọi là Dawn, bản sao ở giữa và vị hoàng đế trị vì được gọi là Day, và hoàng đế danh dự được gọi là Dusk.',
+            url: './img/AvengersBanner.jpg',
+            active: true
+        });
+        listFilms.push({
+            id: 2,
+            title: 'Thảm họa biển Bắc',
+            date: new Date(2021, 11, 15),
+            desc: 'kể về một giàn khoan dầu bị sụt lở nghiêm trọng trên bờ biển Na Uy, và các nhà nghiên cứu cố gắng tìm hiểu điều gì đã xảy ra khi họ nhận ra đây chỉ là bước khởi đầu của một thứ thậm chí còn nghiêm trọng hơn.',
+            url: './img/BurningTrainBanner.jpg',
+            active: false
+        });
+        listFilms.push({
+            id: 3,
+            title: 'Trận chiến Deveselu',
+            date: new Date(2021, 12, 17),
+            desc: 'Sau khi chứng kiến ​​cảnh mẹ mình bị quân Đức xâm lược bắn chết, Artūrs mười sáu tuổi cùng với cha quyết định nhập ngũ vào các tiểu đoàn súng trường Latvia của Quân đội Đế quốc Nga với hy vọng trả thù và tìm lại vinh quang. Artūrs tiếp tục chiến đấu trong Thế chiến thứ nhất ở Mặt trận phía Đông , nơi anh mất cha và anh trai và nhanh chóng vỡ mộng. Cuối cùng, Artūrs trở về đất nước mới được tuyên bố của mình để chiến đấu trong Chiến tranh giành độc lập của Latvia và bắt đầu mọi thứ lại từ đầu.',
+            url: './img/GangsterSquadBanner.jpg',
+            active: false
+        });
+        listFilms.push({
+            id: 4,
+            title: 'Thuyết quyền phục thù',
+            date: new Date(2020, 9, 19),
+            desc: 'Kai, Lu Xin và Tommy đến Bangkok để truy lùng kẻ giết chị gái của Tommy, Jenny, họ đã tìm thấy trên người cô một tấm bùa hộ mệnh cổ xưa dẫn họ đến Thái Lan. Ở đó, tỷ phú công nghệ sinh học William Pan tiếp cận họ, yêu cầu họ mang đến cho anh ta chị gái sinh đôi của mình, trùm thế giới ngầm Ku An Qi, một người giang hồ đã tiêu thụ một lượng lớn khí để mở rộng sức mạnh siêu nhiên của mình nhằm chiếm lấy thế giới. William giải thích với họ rằng anh và Ku là hậu duệ của Pangu, sinh vật đã định hình nên vũ trụ, người mà Sát thủ Wu đầu tiên giết chết sau khi anh ta nổi điên lên vì quyền lực và bản chất của người bây giờ được chứa trong hai tấm bùa hộ mệnh: một thuộc sở hữu của William và tấm còn lại Tommy đã tìm thấy trên Jenny, thứ trước đây thuộc về đến Ku. William nói với họ rằng Ku đã giết Jenny trong khi tìm kiếm Kai, Wu Assassin hiện tại, nhưng đã đánh mất lá bùa của cô ấy trong một cuộc chiến với cô ấy, và bây giờ anh ta có thể sử dụng cả hai lá bùa để hạ bệ Ku và lập lại trật tự cho vũ trụ. Bộ ba đồng ý giúp William.',
+            url: './img/TheAVENGERSBanners.jpg',
+            active: false
+        })
+
+
+        function activeFilm() {
+            let filmNextActive = null;
+            // get active slide
+            for (let i = 0; i < listFilms.length; i++) {
+                if (listFilms[i].active) {
+                    if (i < (listFilms.length - 1)) {
+                        filmNextActive = listFilms[i + 1];
+                        break;
+                    }
+                    filmNextActive = listFilms[0];
+                }
+                filmNextActive = listFilms[0];
+            }
+            // reset
+            resetFilmActive();
+            //set active
+            filmNextActive.active = true;
+
+            //active carousel
+            activeCarousel();
+
+            // display
+            displayData();
+        }
+
+        // auto nex slide
+        var interval = setInterval(activeFilm, 5000);
+
+        // Reset active
+        function resetFilmActive() {
+            for (const film of listFilms) {
+                film.active = false;
+            }
+        }
+        // display active carousel
+        function activeCarousel() {
+            //clear carousel
+            $(".carousel").html("");
+            $(".carousel-sm").html("");
+            for (const film of listFilms) {
+                // xủ ly tạo list film cho màn hình pc
+                let div = document.createElement("div");
+                div.className = "item-film margin";
+                if (film.active) {
+                    div.className += " item-film-active";
+                }
+                div.onclick = () => {
+                    bannerFilm(film.id, 'item-film', div);
+                };
+                $(".carousel").append(div);
+
+                // xủ ly tạo list film cho màn hình phone
+                let divPhone = document.createElement("div");
+                divPhone.className = "item-film-sm margin";
+                if (film.active) {
+                    divPhone.className += " item-film-active";
+                }
+                divPhone.title = "" + film.id;
+                divPhone.onclick = () => {
+                    bannerFilm(film.id, 'item-film-sm', divPhone);
+                };
+                $(".carousel-sm").append(divPhone);
+            }
+        }
+
+        // display data
+        function displayData() {
+            for (const film of listFilms) {
+                if (film.active) {
+                    //debugger
+                    $(":root")[0].style.setProperty("--urlFilm",`url('${film.url}')`);
+                    $(".film").removeClass("changed");
+                    // reset animationName để có thể gọi lại animation lần sau
+                    window.requestAnimationFrame((time)=>{
+                        window.requestAnimationFrame((time)=>{
+                            //console.log(document.getElementsByClassName("film")[0]);
+                            $(".film").addClass("changed");
+                            //console.log(document.getElementsByClassName("film")[0]);
+                        })
+                    })
+
+                    $(".button-title")[0].innerText = `${film.id}. ${film.title}`;
+                    $(".id")[0].innerText = film.id;
+                    $(".title-film")[0].innerText = $(".button-title")[0].innerText;
+                    $(".date")[0].innerText = film.date.toLocaleDateString("en-US");
+                    $(".desc-txt")[0].innerText = film.desc;
+                    return;
+                }
+            }
+        }
+        document.getElementsByTagName
+        $(document).ready(() => {
+            //debugger
+            let height = $(".line").height()
+            $(".line").height(height /= 2);
+
+            //active carousel
+            activeCarousel();
+
+            displayData()
+        })
+
+        function bannerFilm(id, className, element) {
+            //debugger
+
+            // dừng interval
+            clearInterval(interval);
+
+            var listBanerFilm = $(`.${className}`);
+            listBanerFilm.removeClass("item-film-active");
+            element.className += " item-film-active";
+
+            // reset actove film
+            resetFilmActive();
+
+            //set active
+            var film = listFilms.filter((item) => {
+                return item.id == id;
+            })
+            film[0].active = true;
+
+            // display
+            displayData();
+
+            // set lại interval
+            interval = setInterval(activeFilm, 5000);
+        }
+
+        $(".btn-watch")[0].addEventListener("click", () => {
+            //get film is active
+            for (const film of listFilms) {
+                if (film.active) {
+                    alert(`${location.href}?idFim=${film.id}&name=${film.title}`)
+                    return;
+                }
+            }
+        })
+
+        $(".btn-signIn")[0].addEventListener("click", () => {
+            window.location = 'https://www.google.com/';
+        })
+    </script>
+</body>
+
+</html>

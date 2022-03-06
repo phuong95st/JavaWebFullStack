@@ -212,3 +212,6 @@ Buoi 11
  - Ajax
  - Jquery: Thư viện JS để đỡ phải code JS nhiều
  - Bootstrap: Thư viện hỗ trợ css nhanh hơn
+
+------------------------------------
+Buổi 12:

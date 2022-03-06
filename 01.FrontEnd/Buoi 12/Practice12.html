@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Jquery cdn-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Practice 12</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <input type="text" id="student">
+            <button onclick="nhap()">Nhập</button>
+            <button onclick="print()" hidden>In</button>
+            <button type="button" id="update-all" hidden>update all</button>
+            <button type="button" id="delete-all" hidden>Delete all</button>
+        </div>
+        <div>
+            <p id="message"></p>
+
+            <ol id="list-student">
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // use strick mode
+        //"use strick"
+        // khai bao mang hoc sinh
+        var students = [];
+        var listSelected = []
+        // xử lý sự kiện lick click btn nhập
+        function nhap() {
+            var student = document.getElementById('student').value;
+            students.push(student);
+            // set lại message
+            document.getElementById("message").innerText = `"Bạn đang có ${students.length} học sinh`;
+            // hiển thị
+            print();
+
+        }
+        // xử lý sự kiện click btn in
+        function print() {
+            if (students.length > 0) {
+                $("#update-all").css("display", "block");
+                $("#delete-all").css("display", "block");
+            } else {
+                $("#update-all").css("display", "block");
+                $("#delete-all").css("display", "block");
+            }
+
+            // xử lý hiển thị list student
+            var listStudent = "";
+            for (let i = 0; i < students.length; i++) {
+                listStudent += "<li><input type='checkbox' onclick='addListSelect(" + this.checked + ", " + i + ")'>" + students[i] + "   <button type='button' onClick='updateItem(" + i + ")'>Update </button> | <button type='button' onClick='deleteItem(" + i + ")'>Delete</button> | <button type='button' onClick='saveItem(" + i + ")'>Save</button></li>";
+            }
+            // set list-student
+            document.getElementById("list-student").innerHTML = listStudent;
+        }
+
+        // xử lý sự kiện delete
+        function deleteItem(id){
+            students.splice(id,1);
+            print();
+        }
+
+        // update item
+        function updateItem(id){
+            $("#student").val(students[id]);
+            $("#save").css("display","block");
+        }
+
+        function saveItem(id){
+            var student = $('#student').val();
+            students[id] = student;
+            var student = $('#student').val("");
+            print();
+        }
+
+        function addListSelect(checked, id){
+            debugger
+            if (checked){
+                listSelected.push(id);
+            }
+        }
+
+        $("#update-all").click(()=>{
+            for (let i = 0; i<listSelected.length; i++) {
+                students.splice(listSelected[i],1);
+            }
+            listSelected = [];
+            print();
+        })
+
+        $("#edit-all").click(()=>{
+            if(listSelected.length>1){
+                alert("Bạn chỉ được chọn 1 item");
+                return;
+            }
+            updateItem(listSelected[0]);
+        })
+
+    </script>
+</body>
+
+</html>
